@@ -16,7 +16,8 @@ void	free_array(char **result, int i)
 {
 	while (i >= 0)
 	{
-		free (result[i]);
+		if (result[i] != NULL)
+			free (result[i]);
 		i--;
 	}
 	free (result);
@@ -32,7 +33,8 @@ char	*copy_str(char **array, int i, char **res)
 		free_array(res, i);
 		return (NULL);
 	}
-	free (array[i]);
+	if (array[i] != NULL)
+		free (array[i]);
 	return (str);
 }
 

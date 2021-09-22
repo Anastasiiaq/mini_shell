@@ -6,13 +6,13 @@
 /*   By: jhizdahr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 15:19:09 by jhizdahr          #+#    #+#             */
-/*   Updated: 2021/09/21 15:19:51 by jhizdahr         ###   ########.fr       */
+/*   Updated: 2021/09/22 18:37:04 by tmillenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_end_of_double_parse(int fd, t_main *proper, char *stop_word)
+int	ft_end_of_double_parse(int fd, t_main *proper, char *stop_word, char **str)
 {
 	if (close(fd) == -1)
 	{
@@ -26,6 +26,8 @@ int	ft_end_of_double_parse(int fd, t_main *proper, char *stop_word)
 		ft_cmd_err("heredoc");
 		return (-1);
 	}
+	while (**str == ' ' || **str == '\t')
+		(*str)++;
 	return (1);
 }
 
@@ -76,5 +78,29 @@ char	*ft_dollar_in_redirect(char *line, char **env, char **res, t_param *par)
 		}
 		ft_str_assignment(&doll, res, par);
 	}
+	free(line);
 	return (doll);
+}
+
+void	ft_write_to_file(char *line, char *buf, int fd, char **env)
+{
+	char	*res;
+	char	*doll;
+	t_param	param;
+
+	while (ft_strcmp(line, buf) != 0)
+	{
+		res = line;
+		ft_initializate_parameters(&param);
+		doll = ft_dollar_in_redirect(line, env, &res, &param);
+		if (doll == NULL)
+			exit (-1);
+		write(fd, doll, ft_strlen(doll));
+		write(fd, "\n", 1);
+		free(doll);
+		line = readline("> ");
+		if (line == NULL)
+			break ;
+		line = ft_quotes_line(line);
+	}
 }

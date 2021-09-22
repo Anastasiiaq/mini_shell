@@ -14,17 +14,24 @@
 
 static void	ft_siginit(int sig)
 {
-//	rl_replace_line("", 0);
-//	write(1, "\n", 1);
-//	rl_on_new_line();
-//	rl_redisplay();
-//	rl_replace_line("", 0);
-//	g_err_status = 1;
+	(void)sig;
+	rl_replace_line("", 0);
+	write(1, "\n", 1);
+	rl_on_new_line();
+	rl_redisplay();
+	rl_replace_line("", 0);
+	g_err_status = 1;
 }
 
 void	ft_signal(void)
 {
-//	rl_catch_signals = 0;
-//	signal(SIGINT, ft_siginit);
-//	signal(SIGQUIT, SIG_IGN);
+	rl_catch_signals = 0;
+	signal(SIGINT, ft_siginit);
+	signal(SIGQUIT, SIG_IGN);
+}
+
+void	ft_signal_cmd(void)
+{
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
 }

@@ -53,7 +53,7 @@ static int	ft_cmd_is_middle(t_main *cmds, char ***envp,
 		cmds = cmds->next;
 		i++;
 	}
-	ft_close_pipes_fd_in_middle_fork(*cmds, position, info);
+	ft_close_pipes_fd_in_middle_fork(position, info);
 	if (cmds->fd_input == 0)
 		ft_dup2(info.fd[position - 1][0], 0, cmds->command[0]);
 	else

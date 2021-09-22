@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tmillenn <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/22 18:55:46 by tmillenn          #+#    #+#             */
+/*   Updated: 2021/09/22 18:59:54 by tmillenn         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 t_main	*ft_initialise(void)
@@ -24,33 +36,48 @@ t_main	*ft_initialise(void)
 	return (proper);
 }
 
-int main(int argc, char **argv, char **envp)
+char	*ft_input(void)
+{
+	char	*str;
+
+	str = readline("Minishell> ");
+	if (str == NULL)
+	{
+		ft_putstr_fd("exit\n", 1);
+		exit(0);
+	}
+	str = ft_preparse_empty_str(str);
+	return (str);
+}
+
+void	ft_init_main(int argc, char **argv, char ***env, char **envp)
+{
+	(void)argc;
+	(void)argv;
+	*env = ft_get_env(envp);
+	g_err_status = 0;
+}
+
+int	main(int argc, char **argv, char **envp)
 {
 	char	*str;
 	t_main	*tmp;
-	char 	**env;
+	char	**env;
 
-	env = ft_get_env(envp);
-	g_err_status = 0;
+	ft_init_main(argc, argv, &env, envp);
 	ft_change_lvl(&env);
 	while (1)
 	{
 		ft_signal();
-		str = readline("Minishell> ");
+		str = ft_input();
 		if (str == NULL)
-		{
-			ft_putstr_fd("exit\n", 1);
-			exit(0);
-		}
-		str = ft_preparse_empty_str(str);
-		if (str == NULL)
-			continue;
+			continue ;
 		add_history(str);
 		tmp = ft_parsing(str, env);
 		if (tmp == NULL)
 		{
 			free (str);
-			continue;
+			continue ;
 		}
 		ft_execute_input(tmp, &env);
 		free (str);

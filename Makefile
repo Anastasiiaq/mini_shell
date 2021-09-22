@@ -2,6 +2,8 @@ NAME = minishell
 
 CC = gcc
 
+CFLAGS = -Wall -Werror -Wextra
+
 %.o: %.c
 	$(CC) $(CFLAGS) -Ift -Ireadline -I/Users/$(USER)/.brew/Cellar/readline/8.1/include -c $< -o $@
 

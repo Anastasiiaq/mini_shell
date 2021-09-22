@@ -42,8 +42,7 @@ static char	*ft_malloc_new_line(char *old_line,
 	return (new_line);
 }
 
-static void	ft_new_envp(char **envp, char *arg,
-		char *new_var_name, char **new_envp)
+static void	ft_new_envp(char **envp, char *new_var_name, char **new_envp)
 {
 	int		i;
 	char	*var_name;
@@ -82,7 +81,7 @@ static void	ft_del_line(char ***envp, char *arg)
 	if (!new_envp || !new_var_name)
 		return (ft_custom_err("unset", "failed to allocate memory"));
 	tmp = *envp;
-	ft_new_envp(*envp, arg, new_var_name, new_envp);
+	ft_new_envp(*envp, new_var_name, new_envp);
 	*envp = new_envp;
 	ft_free_arr(tmp);
 	free(new_var_name);

@@ -29,7 +29,7 @@ void	ft_exec_some_cmd(char **cmd, char **envp)
 	int	status;
 
 	status = 0;
-	ft_signal_in_fork();
+	ft_set_signal(*cmd);
 	pid = fork();
 	if (pid == 0)
 	{

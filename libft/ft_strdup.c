@@ -6,18 +6,20 @@
 /*   By: jhizdahr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 13:59:33 by jhizdahr          #+#    #+#             */
-/*   Updated: 2021/04/25 16:20:43 by jhizdahr         ###   ########.fr       */
+/*   Updated: 2021/09/22 16:23:11 by tmillenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup (const char *s1)
+char	*ft_strdup(const char *s1)
 {
 	size_t	i;
 	char	*result;
 	size_t	size;
 
+	if (s1 == NULL)
+		return (NULL);
 	i = 0;
 	size = ft_strlen(s1);
 	result = malloc(size * sizeof(char) + 1);

@@ -6,7 +6,7 @@
 /*   By: jhizdahr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 14:29:30 by jhizdahr          #+#    #+#             */
-/*   Updated: 2021/09/21 14:30:20 by jhizdahr         ###   ########.fr       */
+/*   Updated: 2021/09/22 19:00:39 by tmillenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	fill_result(char **result, char *s1, char *s2)
 {
-	int		i;
+	size_t	i;
 	size_t	size1;
 	size_t	size2;
 

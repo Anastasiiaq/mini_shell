@@ -18,7 +18,7 @@ static void	ft_close_pipe_fd(int *fd, char *cmd_name)
 	ft_close(fd[1], cmd_name);
 }
 
-void	ft_close_pipes_fd_in_middle_fork(t_main cmd, int position, t_info info)
+void	ft_close_pipes_fd_in_middle_fork(int position, t_info info)
 {
 	int	i;
 

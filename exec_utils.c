@@ -57,3 +57,11 @@ int	ft_count_commands(t_main *cmds)
 	}
 	return (count);
 }
+
+void	ft_set_signal(char *cmd_name)
+{
+	if (ft_strcmp(cmd_name, "./minishell") == 0)
+		ft_signal_cmd();
+	else
+		ft_signal_in_fork();
+}

@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-static char	*ft_quotes_line(char *line)
+char	*ft_quotes_line(char *line)
 {
 	char	*res;
 	char	*buf;
@@ -36,7 +36,7 @@ static void	ft_form_heredoc(char **buf, t_param *p, char **str)
 	{
 		if ((**str == ' ' || **str == '|' || **str == '\t' || **str == '>'
 				|| **str == '<') && p->in_quotes != 1 && p->in_dquotes != 1)
-			break;
+			break ;
 		if (**str == 39 || **str == '"')
 		{
 			if (ft_quotes_flags(&(p->in_quotes), &(p->in_dquotes), str) == 1)
@@ -54,33 +54,16 @@ static void	ft_form_heredoc(char **buf, t_param *p, char **str)
 static void	ft_child_process_heredoc(char *buf, char **env, int fd)
 {
 	char	*line;
-	t_param	param;
-	char	*doll;
-	char	*res;
 
 	ft_signal_here_doc();
+	rl_catch_signals = 1;
 	line = readline("> ");
 	if (!line)
 		exit (1);
 	line = ft_quotes_line(line);
 	if (line == NULL)
 		exit (-1);
-	while (ft_strcmp(line, buf) != 0)
-	{
-		res = line;
-		ft_initializate_parameters(&param);
-		doll = ft_dollar_in_redirect(line, env, &res, &param);
-		if (doll == NULL)
-			exit (-1);
-		write(fd, doll, ft_strlen(doll));
-		write(fd, "\n", 1);
-		ft_free_some(line, doll, NULL);
-		line = readline("> ");
-		if (line == NULL)
-			break ;
-		line = ft_quotes_line(line);
-	}
-	free(line);
+	ft_write_to_file(line, buf, fd, env);
 	exit (1);
 }
 
@@ -92,12 +75,18 @@ static int	ft_fill_the_file(char *buf, char **env, int fd)
 	proc = fork();
 	if (proc == -1)
 		return (-1);
+	signal(SIGINT, SIG_IGN);
 	if (proc == 0)
 		ft_child_process_heredoc(buf, env, fd);
 	if (waitpid(proc, &status, 0) == -1)
 		ft_cmd_err("waitpid");
 	if (WIFEXITED(status) != 0)
 		status = WEXITSTATUS(status);
+	if (status == 2)
+	{
+		free(buf);
+		return (-1);
+	}
 	return (status);
 }
 
@@ -123,7 +112,7 @@ int	ft_parse_double_input(char **str, char **env, t_main *proper)
 	}
 	if (ft_fill_the_file(stop_word, env, tmp) == -1)
 		return (-1);
-	if (ft_end_of_double_parse(tmp, proper, stop_word) == -1)
+	if (ft_end_of_double_parse(tmp, proper, stop_word, str) == -1)
 		return (-1);
 	return (1);
 }

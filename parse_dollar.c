@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-static char	*ft_dollar_replace(char **str, char **env, t_param *param)
+char	*ft_dollar_replace(char **str, char **env, t_param *param)
 {
 	int	n;
 
@@ -40,7 +40,7 @@ static char	*ft_dollar_replace(char **str, char **env, t_param *param)
 	return ("\0");
 }
 
-static char	*ft_parse_question(char **str)
+char	*ft_parse_question(char **str)
 {
 	char	*res;
 
@@ -55,7 +55,7 @@ static char	*ft_parse_question(char **str)
 	return (res);
 }
 
-static void	ft_quotes_in_dollar(char **res, t_param *param, char **str)
+void	ft_quotes_in_dollar(char **res, t_param *param, char **str)
 {
 	int	k;
 
@@ -117,10 +117,8 @@ int	ft_dollar_parse_special(char **str, char **env, char ***res, t_param *param)
 		return (-1);
 	if (*copy == '?')
 		free(buf);
-	*res = ft_split((*res)[param->j], ' ');
-	while ((*res)[param->j] != NULL)
-		(param->j)++;
-	/*while ((*res)[param->j][param->i] != '\0')
-		(param->i)++;*/
+	*res = ft_change_arg(*res, (*res)[param->j], param);
+	if (*res == NULL)
+		return (-1);
 	return (1);
 }
