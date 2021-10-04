@@ -40,7 +40,7 @@ char	*ft_input(void)
 {
 	char	*str;
 
-	str = readline("Minishell> ");
+	str = readline("🐚 minishell> ");
 	if (str == NULL)
 	{
 		ft_putstr_fd("exit\n", 1);

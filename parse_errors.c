@@ -38,17 +38,17 @@ int	ft_redirects_syntax_error(char **str)
 	{
 		if (**str == '|')
 		{
-			ft_error("minishell: syntax error near unexpected token `|'");
+			ft_error("🐚 minishell: syntax error near unexpected token `|'");
 			return (-1);
 		}
 		else if (**str == '>')
 		{
-			ft_error("minishell: syntax error near unexpected token `>'");
+			ft_error("🐚 minishell: syntax error near unexpected token `>'");
 			return (-1);
 		}
 		else if (**str == '<')
 		{
-			ft_error("minishell: syntax error near unexpected token `<'");
+			ft_error("🐚 minishell: syntax error near unexpected token `<'");
 			return (-1);
 		}
 		else if (**str == ' ' || **str == '\t')
@@ -56,6 +56,6 @@ int	ft_redirects_syntax_error(char **str)
 		else
 			return (1);
 	}
-	ft_error("minishell: syntax error near unexpected token `newline'");
+	ft_error("🐚 minishell: syntax error near unexpected token `newline'");
 	return (-1);
 }

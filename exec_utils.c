@@ -48,7 +48,7 @@ int	ft_count_commands(t_main *cmds)
 		{
 			if (cmds->fd_input == 0 && cmds->fd_output == 1)
 			{
-				ft_error("minishell: syntax error near unexpected token `|'");
+				ft_error("🐚 minishell: syntax error near unexpected token `|'");
 				return (0);
 			}
 		}
