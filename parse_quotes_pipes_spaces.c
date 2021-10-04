@@ -64,3 +64,11 @@ int	ft_parse_pipes(char **str, t_param *param, t_main **proper)
 		(*str)++;
 	return (1);
 }
+
+void	ft_parse_spaces_in_dollar(t_param *param, char **arr, int i)
+{
+	param->j = i - 1;
+	param->i = 0;
+	while ((arr)[param->j][param->i] != '\0')
+		(param->i)++;
+}

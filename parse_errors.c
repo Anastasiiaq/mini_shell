@@ -17,6 +17,7 @@ void	ft_error(char *str)
 	size_t	size;
 
 	size = ft_strlen(str);
+	g_err_status = 258;
 	write(2, str, size);
 	write(2, "\n", 1);
 }

@@ -72,7 +72,7 @@ static int	ft_make_arg(char **last, char ***result, t_param *param, char **buf)
 		j++;
 	}
 	(*result)[i] = NULL;
-	param->j = i;
+	ft_parse_spaces_in_dollar(param, *result, i);
 	return (1);
 }
 

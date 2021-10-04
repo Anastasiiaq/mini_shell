@@ -32,7 +32,6 @@ static void	ft_set_oldpwd(char *old_pwd, char ***envp, char *cmd)
 	if (num_line == -2)
 		return (ft_custom_err("cd", "failed to allocate memory"));
 	str = ft_strjoin("OLDPWD=", old_pwd);
-	free(old_pwd);
 	if (str == NULL)
 		return (ft_custom_err("cd", "failed to allocate memory"));
 	if (num_line == -1)

@@ -26,8 +26,12 @@ static void	ft_get_old_pwd(char **old_pwd, char *cmd_name)
 static void	ft_chdir(int *dir, char *dst, char *cmd_name)
 {
 	*dir = chdir(dst);
+	g_err_status = 0;
 	if (*dir != 0)
+	{
+		g_err_status = 1;
 		ft_cd_err(cmd_name, dst);
+	}
 }
 
 static void	ft_get_default_dir(char **dfl_dir, char **envp)
@@ -72,5 +76,5 @@ void	ft_cd(char **cmd, char ***envp)
 		ft_chdir(&dir, dfl_dir, cmd[0]);
 	if (dir == 0)
 		ft_set_param(old_pwd, envp, *cmd);
-	g_err_status = 0;
+	free(old_pwd);
 }

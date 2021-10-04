@@ -139,6 +139,7 @@ char	*ft_dollar_in_redirect(char *line, char **env, char **res, t_param
 			*par);
 int		ft_dollar_parse_special(char **str, char **env, char ***res, t_param
 			*param);
+void	ft_parse_spaces_in_dollar(t_param *param, char **arr, int i);
 char	**ft_change_arg(char **last, char *str, t_param *param);
 void	ft_write_to_file(char *line, char *buf, int fd, char **env);
 char	*ft_quotes_line(char *line);

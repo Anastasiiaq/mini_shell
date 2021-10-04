@@ -58,9 +58,11 @@ OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIB_SRCS) $(HEADER)
+$(NAME): $(OBJS) $(LIB_SRCS)
 	$(MAKE) -C ./libft
 	$(CC) $(OBJS) -lreadline -Llibft -lft -L/Users/$(USER)/.brew/Cellar/readline/8.1/lib/ -o $(NAME)
+
+$(OBJS):	$(HEADER)
 
 clean:
 		rm -f $(OBJS) $(BONUS_OBJS)

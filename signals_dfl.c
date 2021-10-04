@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-static void	ft_siginit(int sig)
+static void	ft_sigint(int sig)
 {
 	(void)sig;
 	rl_replace_line("", 0);
@@ -26,7 +26,7 @@ static void	ft_siginit(int sig)
 void	ft_signal(void)
 {
 	rl_catch_signals = 0;
-	signal(SIGINT, ft_siginit);
+	signal(SIGINT, ft_sigint);
 	signal(SIGQUIT, SIG_IGN);
 }
 
