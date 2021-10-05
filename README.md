@@ -1,8 +1,8 @@
 # 🐚 minishell
 
-🐚 minishell is a simple shell like a little bash.
+``🐚 minishell`` is a team project. It's a simple shell like a little bash.
 
-### How to use it
+### Usage
 Using ``make`` will create the ``minishell`` executable.
 
 Simply run it with :
@@ -15,7 +15,7 @@ Simply run it with :
 
 minishell can search and launch the right executable based on the PATH variable or by using relative or absolute path (``/bin/ls`` or ``ls``).
 
-minishell stores the history of executed commands, use the arrows (⬆⬇) to navigate through the history.
+minishell stores the history of executed commands, use the arrows (``↑↓``) to navigate through the history.
 
 ``'`` and ``"`` work the same as bash, except for multiline commands.
 
