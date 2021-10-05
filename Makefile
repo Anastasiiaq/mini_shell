@@ -5,52 +5,52 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 
 %.o: %.c
-	$(CC) $(CFLAGS) -Ift -Ireadline -I/Users/$(USER)/.brew/Cellar/readline/8.1/include -c $< -o $@
+	$(CC) $(CFLAGS) -I./includes/ -Ift -Ireadline -I/usr/local/opt/readline/include -c $< -o $@
 
-SRCS =	main.c \
-		parse_main.c \
-		preparsing.c \
-		parse_dollar.c \
-		parse_dollar2.c \
-		ft_mystrjoin.c \
-		get_env.c \
-		errors.c \
-		free_struct.c \
-		parse_utils.c \
-		parse_quotes_pipes_spaces.c \
-		parse_errors.c \
-		parse_redirects_out.c \
-		parse_redirects_in.c \
-		parse_redir_heredoc.c \
-		parse_redir_heredoc2.c \
-		cd.c \
-		cd_set_param.c \
-		echo.c \
-		env.c \
-		exec_split_path.c \
-		exec_utils.c \
-		execve.c \
-		exit.c \
-		export.c \
-		export_unset_check.c \
-		export_with_arg.c \
-		free_arr.c \
-		get_env_info.c \
-		pipe.c \
-		pipe_close_fd.c \
-		pipe_create.c \
-		pipe_dup2.c \
-		pipe_exec_cmd.c \
-		pipe_fork.c \
-		pwd.c \
-		signals.c \
-		signals_dfl.c \
-		unset.c \
-		minishell.c
-
+SRCS =	./src/builtins/cd/cd.c \
+	./src/builtins/cd/cd_set_param.c \
+	./src/builtins/echo/echo.c \
+	./src/builtins/env/env.c \
+	./src/builtins/env/get_env.c \
+	./src/builtins/env/get_env_info.c \
+	./src/builtins/exit/exit.c \
+	./src/builtins/export/export.c \
+	./src/builtins/export/export_unset_check.c \
+	./src/builtins/export/export_with_arg.c \
+	./src/builtins/pwd/pwd.c \
+	./src/builtins/unset/unset.c \
+	./src/errors/errors.c \
+	./src/errors/parse_errors.c \
+	./src/execve/exec_split_path.c \
+	./src/execve/exec_utils.c \
+	./src/execve/execve.c \
+	./src/free/free_arr.c \
+	./src/free/free_struct.c \
+	./src/minishell/main.c \
+	./src/minishell/minishell.c \
+	./src/parsing/ft_mystrjoin.c \
+	./src/parsing/parse_dollar.c \
+	./src/parsing/parse_dollar2.c \
+	./src/parsing/parse_main.c \
+	./src/parsing/parse_quotes_pipes_spaces.c \
+	./src/parsing/parse_redir_heredoc.c \
+	./src/parsing/parse_redir_heredoc2.c \
+	./src/parsing/parse_redirects_in.c \
+	./src/parsing/parse_redirects_out.c \
+	./src/parsing/parse_utils.c \
+	./src/parsing/preparsing.c \
+	./src/pipe/pipe.c \
+	./src/pipe/pipe_close_fd.c \
+	./src/pipe/pipe_create.c \
+	./src/pipe/pipe_dup2.c \
+	./src/pipe/pipe_exec_cmd.c \
+	./src/pipe/pipe_fork.c \
+	./src/signals/signals.c \
+	./src/signals/signals_dfl.c \
+	
 LIB_SRCS = libft/*.c
 
-HEADER = minishell.h
+HEADER = ./includes/minishell.h
 
 OBJS = $(SRCS:.c=.o)
 
@@ -60,12 +60,12 @@ all: $(NAME)
 
 $(NAME): $(OBJS) $(LIB_SRCS)
 	$(MAKE) -C ./libft
-	$(CC) $(OBJS) -lreadline -Llibft -lft -L/Users/$(USER)/.brew/Cellar/readline/8.1/lib/ -o $(NAME)
+	$(CC) $(OBJS) -I./includes/ -lreadline -Llibft -lft -L/usr/local/opt/readline/lib/ -o $(NAME)
 
 $(OBJS):	$(HEADER)
 
 clean:
-		rm -f $(OBJS) $(BONUS_OBJS)
+		rm -f $(OBJS)
 		${MAKE} -C ./libft clean
 
 fclean:	clean

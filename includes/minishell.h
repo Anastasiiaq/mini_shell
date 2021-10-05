@@ -22,7 +22,7 @@
 # include <unistd.h>
 # include <sys/wait.h>
 # include <stdio.h>
-# include "libft/libft.h"
+# include "../libft/libft.h"
 # include <sys/fcntl.h>
 # include <string.h>
 # include <readline/readline.h>
