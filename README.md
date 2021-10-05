@@ -27,3 +27,7 @@ Also, using a minishell, you can use ``Ctrl-C`` to interrupt and ``Ctrl-\`` to e
 
 There are several "built-in" functions implemented in the minishell, which means we are not calling the executable file, we have recoded them directly. 
 This applies to ``echo``, ``cd``, ``pwd``, ``export``, ``unset``, ``env`` and ``exit``.
+
+### Screen
+
+<img width="640" alt="minishell" src="https://github.com/Anastasiiaq/mini_shell/blob/master/screenshots/minishell.gif">
