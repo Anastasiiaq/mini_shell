@@ -34,4 +34,4 @@ This applies to ``echo``, ``cd``, ``pwd``, ``export``, ``unset``, ``env`` and ``
 
 ##### Several invalid commands
 
-<img width="640" alt="errors" src="https://github.com/Anastasiiaq/mini_shell/blob/master/screenshots/screen_errors.png">
+<img width="640" alt="errors" src="https://github.com/Anastasiiaq/mini_shell/blob/master/screenshots/screen_errors.jpg">
